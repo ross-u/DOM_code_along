@@ -1,0 +1,81 @@
+/* ---- reset ---- */
+
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* adds padding and border to the element without changing its dimension, it shrinks content */
+
+}
+
+body {
+  height: 100vh;
+  background: #224e6c;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#board {
+  width: 640px;
+  height: 640px; 
+  display: flex;
+  flex-wrap: wrap;
+  perspective: 1000px;
+}
+
+.card {
+  width: 23%; /* to account for the margin 1% + 1% */
+  height: 31%; /* to account for the margin  1% + 1% */
+  margin: 1%;
+  position: relative;
+}
+
+.front,
+.back {
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+
+  position: absolute;
+  border-radius: 5px;
+  background: #139ba0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.card {
+  transform: scale(1);
+}
+
+
+.card:active {
+  transform: scale(0.95);
+  transition: transform .2s;
+  -webkit-transition: -webkit-transform 200ms;
+}
+
+
+.card.flip {
+  transform: rotateY(180deg);
+}
+
+.card {
+  /*  to position the card in the 3D space so that it has front side and back side*/
+  transform-style: preserve-3d;
+  transition: transform .5s;
+  -webkit-transition: -webkit-transform 500ms;
+}
+
+.front {
+  /* As front face image is also turned with its back showing to us, 
+  we need to turn it back */
+  transform: rotateY(180deg);
+}
+
